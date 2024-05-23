@@ -4,6 +4,12 @@ const users = require("./MOCK_DATA.json");
 const file = require("fs");
 //Middleware
 app.use(express.urlencoded({extended: false}));
+app.use((req,res,next)=>{
+    file.appendFile("./log.txt",`\n ${Date.now()} : ${req.method} : ${req.path}`,
+    (err,data)=>{
+        next();
+    });    
+});
 //ROUTES
 app.get("/users",(req,res)=>{
     const html = `
