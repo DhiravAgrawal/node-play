@@ -41,8 +41,9 @@ async function handleShowAnalytics(req,res){
     //     Sucess:{result}})
 }
 
-async function handleHomeView(res,req){
-    const allURLs = URL.find({});
+async function handleHomeView(req,res){
+    const allURLs = await URL.find({});
+    console.log(allURLs);
     res.render("home.ejs",{urls : allURLs});
 }
 module.exports={
